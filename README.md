@@ -1,7 +1,7 @@
 # docker-alpine-nodejs-boilerplate
 Contains boilerplate Dockerfiles and supporting install scripts for a Development and Production [Alpine Linux](http://alpinelinux.org/) w/ [NodeJS](https://nodejs.org/en/) Docker image.
-- Production variant (starting at ~42MB virtual size)
-- Development variant (starting at ~243MB virtual size)
+- Production variant (starting at ~45MB virtual size)
+- Development variant (starting at ~248MB virtual size)
 
 NOTE: final image sizes will increase based on project dependencies.
 
