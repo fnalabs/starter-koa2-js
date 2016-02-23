@@ -26,6 +26,15 @@ then
 
 else
 
+    printf "${TEMPLATE}" "Installing (Global) Node Dependencies"
+
+    npm install -g \
+        bower \
+        gulp \
+        protractor
+
+    webdriver-manager update
+
     if [[ -f ./package.json ]]
     then
         printf "${TEMPLATE}" "Installing (All) Node Dependencies"
