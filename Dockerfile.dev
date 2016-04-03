@@ -1,5 +1,5 @@
-# start with Alpine (NodeJS) Development distro
-FROM aeilers/alpine-nodejs-base:4.3.1-dev
+# start with Alpine (NodeJS) Development image
+FROM aeilers/alpine-nodejs-base:4.4.2-dev
 
 MAINTAINER Adam Eilers <adam.eilers@gmail.com>
 

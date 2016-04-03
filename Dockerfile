@@ -1,5 +1,5 @@
-# start with Alpine (NodeJS) Production distro
-FROM aeilers/alpine-nodejs-base:4.3.1-prod
+# start with Alpine (NodeJS) Production image
+FROM aeilers/alpine-nodejs-base:4.4.2-prod
 
 MAINTAINER Adam Eilers <adam.eilers@gmail.com>
 
