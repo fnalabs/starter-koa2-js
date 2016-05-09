@@ -1,19 +1,22 @@
-# start with Alpine (NodeJS) Production image
-FROM aeilers/alpine-nodejs-base:4.4.2-prod
+# start with Alpine Linux Base image
+FROM aeilers/alpine-base:2.0.0-alpha
 
 MAINTAINER Adam Eilers <adam.eilers@gmail.com>
 
 # set environment variables
-ENV HOME_DIR="/home/${USER_NAME}" \
-    WORK_DIR="workspace"
+ENV NODE_ENV="production" \
+    NODE_PATH="/opt/node" \
+    PATH=${PATH}:/opt/node/bin \
+    PORT=3000
 
-# copy install scripts to image
-COPY ./script/* /opt/script/
+# copy NodeJS and Project code
+# NOTE: build process must output gzip of required application files
+ADD node.tar.gz /opt/node/
+ADD project.tar.gz /home/root/workspace/
 
-# change to ${WORK_DIR} and run project install script as ${USER_NAME}
-WORKDIR ${HOME_DIR}/${WORK_DIR}
-USER ${USER_NAME}
-RUN bash /opt/script/projectInstall.sh ${IMAGE_TYPE}
+# change to workspace and run project install script
+WORKDIR /home/root/workspace/
+RUN npm install --production
 
 # expose standard NodeJS port of 3000
 # NOTE: change port 3000 below to match node app port
