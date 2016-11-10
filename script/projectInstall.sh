@@ -16,11 +16,12 @@ runProject () {
 
         if [[ -f ./package.json ]]
         then
-            apk add tar
+            # NOTE: add any packages required for node dependencies
+            # e.g. apk add tar
 
-            printf "${TEMPLATE}" "Installing (Global) Node Dependencies"
-            npm install -g \
-                gulp
+            # NOTE: add any node global dependencies
+            # printf "${TEMPLATE}" "Installing (Global) Node Dependencies"
+            # e.g. npm install -g gulp
 
             printf "${TEMPLATE}" "Installing (All) Node Dependencies"
             npm install
