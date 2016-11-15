@@ -1,0 +1,30 @@
+version: '2'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        IMAGE_TYPE: "development"
+        # NOTE: if user created, change APP_PATH to user's workspace
+        APP_PATH: "/home/root/workspace/"
+
+    # NOTE: add 'command' for development
+    # command: gulp
+
+    # NOTE: use 'container_name' for development
+    container_name: node-app
+
+    # NOTE: add environment file for development
+    # env_file: ./config/vars.env
+
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+
+    # NOTE: the container path must match APP_PATH above
+    # NOTE: node_modules must be added here so container uses modules from its own volume
+    volumes:
+      - .:/home/root/workspace/:rw
+      - /home/root/workspace/node_modules

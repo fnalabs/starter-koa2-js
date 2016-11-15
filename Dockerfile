@@ -3,8 +3,10 @@
 FROM aeilers/alpine-nodejs-base:latest-lts
 MAINTAINER Adam Eilers <adam.eilers@gmail.com>
 
+# NOTE: if user created, change APP_PATH to user's workspace
 ARG APP_PATH="/home/root/workspace/"
-ARG PORT="3000"
+ARG APP_SOURCE="."
+ARG PORT
 
 # set environment variables
 ENV NODE_ENV="${IMAGE_TYPE:-production}" \
@@ -13,17 +15,17 @@ ENV NODE_ENV="${IMAGE_TYPE:-production}" \
 # copy install scripts to image
 COPY ./script/*Install.sh /opt/script/
 
-# copy NodeJS and Project code
-# NOTE: build process must output gzip of required application files
-ADD project.tar.gz ${APP_PATH}
+# copy Node.js and Project code
+# NOTE: APP_SOURCE can use build process compressed output for smaller production builds
+ADD ${APP_SOURCE} ${APP_PATH}
 
 # change to workspace and run project install script
 WORKDIR ${APP_PATH}
 RUN bash /opt/script/projectInstall.sh
 
-# expose standard NodeJS port of 3000
+# expose standard Node.js port of 3000
 EXPOSE 3000 22
 
 # NOTE: change CMD to be command to start node app
-#   - example: ["node", "./bin/server"]
+# e.g. ["node", "./bin/server"]
 CMD ["/bin/bash"]
