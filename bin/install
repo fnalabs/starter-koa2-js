@@ -16,18 +16,15 @@ runInstall () {
     ###
     # NOTE: install Node.js LTS build dependencies
     ###
-    printf "${TEMPLATE}" "Installing Node.js LTS build dependencies"
     nodeDepsInstall
 
     ###
     # NOTE: setup project
     ###
-    printf "${TEMPLATE}" "Installing Node.js Dev Dependencies"
     if [[ "${NODE_ENV}" == "development" ]]; then
+        printf "${TEMPLATE}" "Installing Node.js Dev Dependencies"
         npm install --quiet -g gulp-cli
     fi
-
-    printf "${TEMPLATE}" "Installing Node.js Dependencies"
     projectInstall
 
     ###
@@ -42,20 +39,16 @@ runInstall () {
 
 setupScripts () {
     apk add \
-        git \
-        tar
+        ca-certificates \
+        openssl
+    update-ca-certificates
 
-    mkdir /opt/scripts
-    git archive --format=tar --remote=https://github.com/aeilers/docker-alpine-script-lib.git HEAD | tar xf - -C /opt/scripts/
+    mkdir -p /opt/scripts
+    wget -qO- https://github.com/aeilers/docker-alpine-script-lib/archive/master.tar.gz | tar xzf - -C /opt/scripts
+    cp -r /opt/scripts/docker-alpine-script-lib-master/* /opt/scripts/
+    rm -r /opt/scripts/docker-alpine-script-lib-master/
 
-    if [[ "${NODE_ENV}" == "production" ]]; then
-        apk del \
-            git \
-            tar
-    fi
-
-    mkdir /opt/scripts/test
-    find /opt/scripts/ -maxdepth 1 -type d -not -name base -not -name nodejs -not -name "." -exec rm -ir {} \;
+    find /opt/scripts/ -mindepth 1 -maxdepth 1 -type d -not -name base -not -name nodejs -not -name "." -exec rm -rf {} \;
 
     chmod +x /opt/scripts/base/*
     ln -s /opt/scripts/base/* /usr/local/bin/
