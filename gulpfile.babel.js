@@ -109,7 +109,7 @@ gulp.task('default', [
     `${RUN}${SCRIPTS}`
 ], runWatch);
 gulp.task('zip', [
-    `${CLEAN}${ALL}`
+    `${CLEAN}${ALL}`,
     `${LINT}${GULPFILE}`,
     `${RUN}${SCRIPTS}`
 ], runZip);
