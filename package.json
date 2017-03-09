@@ -12,14 +12,15 @@
         "type": "git",
         "url": "git+https://github.com/aeilers/docker-alpine-nodejs-starter.git"
     },
+    "bugs": {
+        "url": "https://github.com/aeilers/docker-alpine-nodejs-starter/issues"
+    },
     "homepage": "https://github.com/aeilers/docker-alpine-nodejs-starter#readme",
     "author": "Adam Eilers <adam.eilers@gmail.com>",
     "license": "MIT",
     "engines": {
-        "node": ">=6.9.5"
-    },
-    "bugs": {
-        "url": "https://github.com/aeilers/docker-alpine-nodejs-starter/issues"
+        "node": ">=6",
+        "npm": ">=3"
     },
     "dependencies": {
         "babel-runtime": "~6.23.0",
