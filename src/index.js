@@ -39,10 +39,8 @@ app
 
     // log any errors that occurred
     // NOTE: errors need to be integrated with log stream
-    .on('error', (err, ctx) => {
+    .on('error', err => {
         console.log(err);
-
-        if (CONFIG.NODE_ENV !== 'production') ctx.body = err;
     });
 
 

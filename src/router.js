@@ -10,6 +10,10 @@ export default class AppRouter extends Router {
     }
 
     getWorld = async ctx => {
+        let query = ctx.query;
+
+        if (query.error) throw new Error('test error');
+
         ctx.status = 200;
         return ctx.body = 'Hello World';
     }
