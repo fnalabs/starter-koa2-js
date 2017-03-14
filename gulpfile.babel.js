@@ -114,7 +114,7 @@ gulp.task('zip', [
     `${RUN}${SCRIPTS}`
 ], runZip);
 
-// complex sequences of tasks
+// run sequences
 gulp.task(`${RUN}${SCRIPTS}`, [
     `${CLEAN}${SCRIPTS}`,
     `${LINT}${SCRIPTS}`,

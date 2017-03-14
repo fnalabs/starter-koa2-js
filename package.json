@@ -1,8 +1,8 @@
 {
-    "name": "docker-alpine-nodejs-starter",
+    "name": "docker-nodejs-starter",
     "version": "1.0.0",
-    "description": "Contains boilerplate Dockerfiles and supporting install scripts for all stages of code in a [Alpine Linux](http://alpinelinux.org/) w/ [Node.js](https://nodejs.org/en/) Docker image. (starting at ~21MB compressed)(starting at ~56MB virtual size)",
-    "main": "gulpfile.babel.js",
+    "description": "Starter kit for server-side Node.js w/ Koa2 implementations in Docker",
+    "main": "./bin/start",
     "scripts": {
         "build": "NODE_ENV=production gulp zip",
         "start": "node ./bin/start",
