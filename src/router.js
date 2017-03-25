@@ -9,7 +9,7 @@ export default class AppRouter extends Router {
         this.get('/hello-world', this.getWorld);
     }
 
-    getWorld = async ctx => {
+    async getWorld(ctx) {
         let query = ctx.query;
 
         if (query.error) throw new Error('test error');
