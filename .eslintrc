@@ -2,18 +2,31 @@
     "parser": "babel-eslint",
 
     "env": {
-        "browser": true, // browser global variables.
+        "browser": false, // browser global variables.
         "node": true, // Node.js global variables and Node.js-specific rules.
-        "worker": true, // web workers global variables.
+        "commonjs": false, // CommonJS global variables and CommonJS scoping (use this for browser-only code that uses Browserify/WebPack).
+        "shared-node-browser": false, // Globals common to both Node and Browser.
+        "es6": true, // enable all ECMAScript 6 features except for modules.
+        "worker": false, // web workers global variables.
         "amd": false, // defines require() and define() as global variables as per the amd spec.
         "mocha": true, // adds all of the Mocha testing global variables.
         "jasmine": false, // adds all of the Jasmine testing global variables for version 1.3 and 2.0.
+        "jest": false, // Jest global variables.
         "phantomjs": false, // phantomjs global variables.
-        "jquery": true, // jquery global variables.
+        "protractor": false, // Protractor global variables.
+        "qunit": false, // QUnit global variables.
+        "jquery": false, // jquery global variables.
         "prototypejs": false, // prototypejs global variables.
         "shelljs": false, // shelljs global variables.
         "meteor": false, // meteor global variables.
-        "es6": true // enable all ECMAScript 6 features except for modules.
+        "mongo": false, // MongoDB global variables.
+        "applescript": false, // AppleScript global variables.
+        "nashorn": false, // Java 8 Nashorn global variables.
+        "serviceworker": false, // Service Worker global variables.
+        "atomtest": false, // Atom test helper globals.
+        "embertest": false, // Ember test helper globals.
+        "webextensions": false, // WebExtensions globals.
+        "greasemonkey": false // GreaseMonkey globals.
     },
 
     "ecmaFeatures": {
