@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 
-import NODE_CONFIG from './package';
 import BUILD_CONFIG from './conf/buildConfig';
 
 import gulp from 'gulp';
@@ -93,10 +92,16 @@ function runWatch() {
 }
 
 function runZip() {
-    gulp.src(BUILD_CONFIG.OUTPUT_ZIP, { base: './' })
-      .pipe($.tar(`${NODE_CONFIG.name}.tar`))
-      .pipe($.gzip())
-      .pipe(gulp.dest('.'));
+    return gulp.src(BUILD_CONFIG.OUTPUT_ZIP, { base: './' })
+        .pipe($.tar('app.tar'))
+        .pipe($.gzip())
+        .pipe(gulp.dest('.'))
+        .once('error', function () {
+            process.exit(1);
+        })
+        .once('end', function () {
+            process.exit();
+        });
 }
 
 /*******************************************************************************
