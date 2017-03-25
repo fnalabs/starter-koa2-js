@@ -1,6 +1,6 @@
 # start with Alpine Linux Base image
 # NOTE: change FROM statement to preferred Node.js image
-FROM node:6.10.0-alpine
+FROM node:6.10.1-alpine
 MAINTAINER Adam Eilers <adam.eilers@gmail.com>
 
 # NOTE: if user created, change APP_PATH to user's workspace
@@ -27,4 +27,4 @@ RUN apk update \
 EXPOSE 3000
 
 # NOTE: change CMD to be command to start node app
-CMD ["node", "./bin/start"]
+CMD ["npm", "start"]
