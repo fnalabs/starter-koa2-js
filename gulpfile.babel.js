@@ -53,8 +53,8 @@ function lintJS(src, cacheKey) {
 function instrumentScripts() {
     return gulp.src(BUILD_CONFIG.SRC_SCRIPTS)
         .pipe($.istanbul({
-          ...BUILD_CONFIG.ISTANBUL.INIT,
-          instrumenter: Instrumenter
+            ...BUILD_CONFIG.ISTANBUL.INIT,
+            instrumenter: Instrumenter
         }))
         .pipe($.istanbul.hookRequire());
 }
