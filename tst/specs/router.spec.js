@@ -1,5 +1,8 @@
 import proxyquire from 'proxyquire';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+
+chai.use(chaiAsPromised);
 
 // NOTE: forcing use of proxyquire to shim class dependencies if applicable
 const Router = proxyquire('../../src/router', {});
@@ -52,12 +55,7 @@ describe('router', () => {
         });
 
         it('should expect a thrown error', async () => {
-            try {
-                await router.getWorld(context);
-            }
-            catch (err) {
-                expect(err.message).to.be.equal('test error');
-            }
+            expect(router.getWorld(context)).to.eventually.be.rejectedWith(Error);
         });
 
         afterEach(() => {
