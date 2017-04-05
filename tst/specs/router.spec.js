@@ -55,7 +55,7 @@ describe('router', () => {
         });
 
         it('should expect a thrown error', async () => {
-            expect(router.getWorld(context)).to.eventually.be.rejectedWith(Error);
+            await expect(router.getWorld(context)).to.eventually.be.rejectedWith(Error);
         });
 
         afterEach(() => {
