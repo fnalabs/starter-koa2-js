@@ -12,6 +12,7 @@ runInstall () {
     ###
     printf "${TEMPLATE}" "Installing supporting scripts"
     setupScripts
+    baseInstall
 
     ###
     # NOTE: install Node.js LTS build dependencies
@@ -30,8 +31,8 @@ runInstall () {
     ###
     # NOTE: add additional file/folder removal here for all images
     ###
-    printf "${TEMPLATE}" "Removing Alpine Linux Package Cache, /tmp, and Node.js dependencies"
     if [[ "${NODE_ENV}" == "production" ]]; then
+        printf "${TEMPLATE}" "Removing Alpine Linux Package Cache, /tmp, and Node.js dependencies"
         nodeDepsUninstall
     fi
     clearApkCache
