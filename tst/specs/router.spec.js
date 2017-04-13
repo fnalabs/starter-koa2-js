@@ -1,29 +1,29 @@
 import proxyquire from 'proxyquire';
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
+import sinon from 'sinon';
 
 chai.use(chaiAsPromised);
 
-// NOTE: forcing use of proxyquire to shim class dependencies if applicable
-const Router = proxyquire('../../src/router', {});
-
 describe('router', () => {
-    let router, context;
+    let Router, router, context, getSpy;
 
-    function initContext(error = false) {
+    function init(error = false) {
         context = {
             body: '',
             query: { error },
             status: 200
         };
-    }
 
-    beforeEach(() => {
-        router = new Router();
-    });
+        getSpy = sinon.spy();
+        Router = proxyquire('../../src/router', {
+            'koa-router': class RouterClass { get = getSpy }
+        });
+    }
 
     describe('#constructor', () => {
         before(() => {
+            init();
             router = new Router();
         });
 
@@ -31,6 +31,7 @@ describe('router', () => {
             expect(router).to.exist;
 
             expect(router.getWorld).to.be.a('function');
+            expect(getSpy.calledOnce).to.be.true;
         });
 
         after(() => {
@@ -42,7 +43,7 @@ describe('router', () => {
         const errorStates = [false, true];
 
         beforeEach(() => {
-            initContext(errorStates.shift());
+            init(errorStates.shift());
             router = new Router();
         });
 
