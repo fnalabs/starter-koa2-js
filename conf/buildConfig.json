@@ -17,8 +17,7 @@
     "SRC_SCRIPTS": "./src/**/*.js",
     "BABEL": {
         "plugins": [
-            "transform-es2015-destructuring",
-            "transform-runtime"
+            "transform-es2015-destructuring"
         ],
         "presets": ["es2017"]
     },
