@@ -1,4 +1,4 @@
-# docker-alpine-nodejs-boilerplate
+# docker-nodejs-starter
 
 Contains boilerplate Dockerfiles and supporting install scripts for all stages of code in a [Alpine Linux](http://alpinelinux.org/) w/ [Node.js](https://nodejs.org/en/) Docker image. (starting at ~21MB compressed)(starting at ~56MB virtual size)
 
@@ -9,7 +9,7 @@ NOTE: final image sizes will increase based on project dependencies.
 To provide a starting point for Node.js projects. There is a single Dockerfile with build args that allows you do build a specific image for each stage of code. The install script is mostly automated and meant to be reused during Development to pick up the latest Node.js dependency versions on a regular basis. The provided `USER_NAME` has full permissions to the file and can re-run it with the following command:
 
 ```
-$ ./opt/script/projectInstall.sh
+$ projectInstall
 ```
 
 I have also marked other areas in the scripts to add additional dependencies for the project not covered by default.
