@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aeilers/docker-alpine-nodejs-starter.git"
+    "url": "git+https://github.com/aeilers/docker-nodejs-starter.git"
   },
   "bugs": {
-    "url": "https://github.com/aeilers/docker-alpine-nodejs-starter/issues"
+    "url": "https://github.com/aeilers/docker-nodejs-starter/issues"
   },
-  "homepage": "https://github.com/aeilers/docker-alpine-nodejs-starter#readme",
+  "homepage": "https://github.com/aeilers/docker-nodejs-starter#readme",
   "author": "Adam Eilers <adam.eilers@gmail.com>",
   "license": "MIT",
   "engines": {
