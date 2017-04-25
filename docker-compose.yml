@@ -10,6 +10,9 @@ services:
     # NOTE: use 'image' for development
     image: app
 
+    # NOTE: comment this line out for Windows/Mac development
+    user: "1000"
+
     # NOTE: add 'command' for development
     command: npm run start:dev
 
