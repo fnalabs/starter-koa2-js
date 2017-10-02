@@ -1,20 +1,29 @@
 # docker-nodejs-starter
+
+[![Build Status][circle-image]][circle-url]
+[![Code Coverage][codecov-image]][codecov-url]
+[![Dependency Status][depstat-image]][depstat-url]
+[![Dev Dependency Status][devdepstat-image]][devdepstat-url]
+[![JavaScript Style Guide][style-image]][style-url]
+
 Starter kit for server-side only Node.js with Koa2 applications running on Alpine Linux.
 
 ## Overview
-Overall, this starter kit provides the standard boilerplate constructs to develop and build a Node.js applcation. It provides ES2015+ through Babel with `async/await` support from ES2017 for Koa2 implemenations. It has configurable project settings rather than a heavy handed approach with included \*rc/\*ignore files for:
+Overall, this starter kit provides the standard boilerplate constructs to develop and build a Node.js applcation. It provides ES2017+ through Babel with `async/await` support for Koa2 implemenations. It has some configurable project settings with included \*rc/\*ignore files for:
 - [Babel](https://babeljs.io/) ([.babelrc](./.babelrc) for development, see build config for production code)
-- [ESLint](http://eslint.org/) ([.eslintrc](./.eslintrc))
-- [JSBeautify](http://jsbeautifier.org/) ([.jsbeautifyrc](./.jsbeautifyrc) also includes beautify settings for HTML and CSS)
 - [Git](https://git-scm.com/) ([.gitignore](./.gitignore), pretty much the standard Node.js one provided by Github)
 - [Docker](https://www.docker.com/) ([.dockerignore](./.dockerignore), pretty much the .gitignore above with a few small changes)
 
-Also, it provides an extensible build process integrated with npm scripts and Gulp under the hood when necessary to simplify build needs rather than rolling your own custom scripts. The [gulpfile](./gulpfile.babel.js), written in ES2015+, is paired with a [build config](./conf/buildConfig.json) to help manage the complexity that build processes can sometimes require. The following is a breakdown of npm scripts provided and how to use them:
-- `npm run build` A basic wrapper to build production output.
-- `npm start` A basic script to start the application in a production environment.
-- `npm run start:dev` A basic script to start the application in a development environment.
-
-- **NOTE:** This requires the `gulp-cli` package to be installed globally in order to work.
+## NPM
+Also, it provides an extensible build process integrated with npm scripts. The following is a breakdown of npm scripts provided and how to use them:
+- `npm run build` - to build production output.
+- `npm run coverage` - to report test coverage to Codecov.
+- `npm run dev` - to run two nodemon processes automatically based on watched files, one to rebuild application code and the other to run tests
+- `npm run fix` - to automatically apply JS Standard Style to all JS code
+- `npm run release` - to test, build, and compress production code
+- `npm start` - to start the application in a production environment.
+- `npm run start:dev` - to start the application in a development environment.
+- `npm test` - to run JS Standard Style checks and unit tests
 
 ## Docker
 As mentioned previously, I have included full Docker support for development and production environments.
@@ -29,9 +38,24 @@ For development, it is strongly recommended to use `docker-compose` with the inc
 
 For production, builds are a multi-step process that is easily automated. Below is a short script to achieve this goal.
 ```
-npm run build
+npm run release
 docker build -t aeilers/docker-nodejs .
 ```
 
 ## Guarantees
 [There are none](./LICENSE).
+
+[circle-image]: https://img.shields.io/circleci/project/github/aeilers/docker-nodejs-starter/master.svg
+[circle-url]: https://circleci.com/projects/gh/aeilers/docker-nodejs-starter
+
+[codecov-image]: https://img.shields.io/codecov/c/github/aeilers/docker-nodejs-starter/master.svg
+[codecov-url]: https://codecov.io/gh/aeilers/docker-nodejs-starter
+
+[depstat-image]: https://img.shields.io/david/aeilers/docker-nodejs-starter/master.svg
+[depstat-url]: https://david-dm.org/aeilers/docker-nodejs-starter
+
+[devdepstat-image]: https://img.shields.io/david/dev/aeilers/docker-nodejs-starter/master.svg
+[devdepstat-url]: https://david-dm.org/aeilers/docker-nodejs-starter?type=dev
+
+[style-image]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
+[style-url]: https://standardjs.com
