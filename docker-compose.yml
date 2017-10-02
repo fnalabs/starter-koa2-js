@@ -14,7 +14,7 @@ services:
     user: "1000"
 
     # NOTE: add 'command' for development
-    command: npm run start:dev
+    command: npm run dev
 
     # NOTE: add environment file for development
     # env_file: ./conf/vars.env
@@ -24,7 +24,7 @@ services:
     ports:
       - "3000:3000"
 
-    # NOTE: the container path must match APP_PATH above
+    # NOTE: the container path must match APP_SOURCE above
     # NOTE: node_modules must be added here so container uses modules from its own volume
     volumes:
       - .:/opt/app:rw
