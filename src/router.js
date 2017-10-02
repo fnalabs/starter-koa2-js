@@ -1,21 +1,18 @@
-import Router from 'koa-router';
-
+import Router from 'koa-router'
 
 export default class AppRouter extends Router {
+  constructor () {
+    super()
 
-    constructor() {
-        super();
+    this.get('/hello-world', this.getWorld)
+  }
 
-        this.get('/hello-world', this.getWorld);
-    }
+  async getWorld (ctx) {
+    let query = ctx.query
 
-    async getWorld(ctx) {
-        let query = ctx.query;
+    if (query.error) throw new Error('test error')
 
-        if (query.error) throw new Error('test error');
-
-        ctx.status = 200;
-        return ctx.body = 'Hello World';
-    }
-
+    ctx.status = 200
+    ctx.body = 'Hello World'
+  }
 }
