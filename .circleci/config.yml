@@ -3,10 +3,9 @@ version: 2.0
 jobs:
   checkout_code:
     docker:
-      - image: node:8.6.0-alpine
+      - image: circleci/node:8.6.0
     working_directory: ~/docker-nodejs-starter
     steps:
-      - run: apk add --update git
       - checkout
       - save_cache:
           key: repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -15,7 +14,7 @@ jobs:
 
   install_dependencies:
     docker:
-      - image: node:8.6.0-alpine
+      - image: circleci/node:8.6.0
     working_directory: ~/docker-nodejs-starter
     steps:
       - restore_cache:
@@ -32,7 +31,7 @@ jobs:
 
   test:
     docker:
-      - image: node:8.6.0-alpine
+      - image: circleci/node:8.6.0
     working_directory: ~/docker-nodejs-starter
     steps:
       - restore_cache:
@@ -48,13 +47,13 @@ jobs:
           name: Run coverage report
           command: npm run coverage
       - store_test_results:
-          path: ~/docker-nodejs-starter/coverage
+          path: ~/docker-nodejs-starter/coverage.lcov
       - store_artifacts:
-          path: ~/docker-nodejs-starter/coverage
+          path: ~/docker-nodejs-starter/coverage.lcov
 
   build:
     docker:
-      - image: node:8.6.0-alpine
+      - image: circleci/node:8.6.0
     working_directory: ~/docker-nodejs-starter
     steps:
       - restore_cache:
@@ -71,7 +70,7 @@ jobs:
           paths:
             - ~/docker-nodejs-starter/app.tar.gz
       - store_artifacts:
-          path: ~/docker-nodejs-starter/coverage
+          path: ~/docker-nodejs-starter/app.tar.gz
 
 workflows:
   version: 2
@@ -86,4 +85,4 @@ workflows:
             - install_dependencies
       - build:
           requires:
-            - install_dependencies
+            - test
