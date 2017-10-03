@@ -14,6 +14,8 @@ Overall, this starter kit provides the standard boilerplate constructs to develo
 - [Git](https://git-scm.com/) ([.gitignore](./.gitignore), pretty much the standard Node.js one provided by Github)
 - [Docker](https://www.docker.com/) ([.dockerignore](./.dockerignore), pretty much the .gitignore above with a few small changes)
 
+I have added support for badges. Currently, this project is integrated with [CircleCI](https://circleci.com/) and [Codecov](https://codecov.io/) to provide build and coverage badges respectively. I have also configured this project to track `dependencies` and `devDependencies` with [David-dm](https://david-dm.org/). All are free for open source projects and should be used to provide quick references to the projects status as well as a way to automatically test pull requests.
+
 ## NPM
 Also, it provides an extensible build process integrated with npm scripts. The following is a breakdown of npm scripts provided and how to use them:
 - `npm run build` - to build production output.
@@ -45,16 +47,16 @@ docker build -t aeilers/docker-nodejs .
 ## Guarantees
 [There are none](./LICENSE).
 
-[circle-image]: https://img.shields.io/circleci/project/github/aeilers/docker-nodejs-starter/master.svg
-[circle-url]: https://circleci.com/projects/gh/aeilers/docker-nodejs-starter
+[circle-image]: https://img.shields.io/circleci/project/github/aeilers/docker-nodejs-starter.svg
+[circle-url]: https://circleci.com/gh/aeilers/docker-nodejs-starter
 
-[codecov-image]: https://img.shields.io/codecov/c/github/aeilers/docker-nodejs-starter/master.svg
+[codecov-image]: https://img.shields.io/codecov/c/github/aeilers/docker-nodejs-starter.svg
 [codecov-url]: https://codecov.io/gh/aeilers/docker-nodejs-starter
 
-[depstat-image]: https://img.shields.io/david/aeilers/docker-nodejs-starter/master.svg
+[depstat-image]: https://img.shields.io/david/aeilers/docker-nodejs-starter.svg
 [depstat-url]: https://david-dm.org/aeilers/docker-nodejs-starter
 
-[devdepstat-image]: https://img.shields.io/david/dev/aeilers/docker-nodejs-starter/master.svg
+[devdepstat-image]: https://img.shields.io/david/dev/aeilers/docker-nodejs-starter.svg
 [devdepstat-url]: https://david-dm.org/aeilers/docker-nodejs-starter?type=dev
 
 [style-image]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
