@@ -22,25 +22,25 @@ runInstall () {
     ###
     # NOTE: setup project
     ###
-    if [[ "${NODE_ENV}" == "development" ]]; then
-        printf "${TEMPLATE}" "Installing Node.js Dev Dependencies"
-        npm install --quiet -g gulp-cli
-    fi
     projectInstall
 
     ###
     # NOTE: add additional file/folder removal here for all images
     ###
     if [[ "${NODE_ENV}" == "production" ]]; then
-        printf "${TEMPLATE}" "Removing Alpine Linux Package Cache, /tmp, and Node.js dependencies"
         nodeDepsUninstall
     fi
     clearApkCache
+
+    # set permissions for node user group
+    chgrp -R node .
+    chmod -R g+w .
 }
 
 setupScripts () {
     apk add \
         ca-certificates \
+        dumb-init \
         openssl
     update-ca-certificates
 
