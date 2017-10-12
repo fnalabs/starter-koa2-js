@@ -1,6 +1,6 @@
 # start with Alpine Linux Base image
 # NOTE: change 'ARG IMG_VER="..."' statement to preferred Node.js image
-ARG IMG_VER="8.6.0-alpine"
+ARG IMG_VER="8.7.0-alpine"
 FROM node:${IMG_VER}
 LABEL maintainer="Adam Eilers <adam.eilers@gmail.com>"
 
