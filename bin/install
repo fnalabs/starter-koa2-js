@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ###
 # environment install script for Alpine Linux on Docker
@@ -15,11 +15,6 @@ runInstall () {
     baseInstall
 
     ###
-    # NOTE: install Node.js LTS build dependencies
-    ###
-    nodeDepsInstall
-
-    ###
     # NOTE: setup project
     ###
     projectInstall
@@ -27,9 +22,6 @@ runInstall () {
     ###
     # NOTE: add additional file/folder removal here for all images
     ###
-    if [[ "${NODE_ENV}" == "production" ]]; then
-        nodeDepsUninstall
-    fi
     clearApkCache
 
     # set permissions for node user group
@@ -62,4 +54,4 @@ setupScripts () {
     ln -s /opt/scripts/nodejs/* /usr/local/bin/
 }
 
-runInstall && exit 0
+runInstall
