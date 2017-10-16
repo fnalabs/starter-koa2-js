@@ -9,6 +9,7 @@
     "coverage": "NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "dev": "nodemon -e js,json -w src -w conf -x \"npm run start:dev\" & nodemon -e js -w tst -x \"npm test\"",
     "fix": "standard --fix",
+    "prerelease": "del app.tar.gz",
     "release": "NODE_ENV=production npm test && npm run build && node ./bin/compress",
     "start": "NODE_ENV=production node ./bin/start",
     "start:dev": "NODE_ENV=development npm run build && node ./bin/start",
