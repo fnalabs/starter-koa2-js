@@ -14,7 +14,9 @@
     "start:dev": "NODE_ENV=development npm run build && node ./bin/start",
     "pretest": "del coverage coverage.lcov .nyc_output",
     "test": "standard",
-    "posttest": "NODE_ENV=test nyc --reporter=html --reporter=text mocha tst --recursive --exit"
+    "posttest": "NODE_ENV=test nyc --reporter=html --reporter=text mocha tst --recursive --exit",
+    "version": "npm run release && git add --all",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -39,7 +41,7 @@
     "koa-router": "~7.2.1"
   },
   "devDependencies": {
-    "archiver": "~2.0.3",
+    "archiver": "~2.1.0",
     "babel-cli": "~6.26.0",
     "babel-core": "~6.26.0",
     "babel-eslint": "~8.0.1",
@@ -49,11 +51,11 @@
     "babel-register": "~6.26.0",
     "chai": "~4.1.2",
     "chai-as-promised": "~7.1.1",
-    "codecov": "~2.3.0",
+    "codecov": "~2.3.1",
     "del-cli": "~1.1.0",
     "dirty-chai": "~2.0.1",
     "mocha": "~4.0.1",
-    "node-mocks-http": "^1.6.6",
+    "node-mocks-http": "~1.6.6",
     "nodemon": "~1.12.1",
     "nyc": "~11.2.1",
     "proxyquire": "~1.8.0",
