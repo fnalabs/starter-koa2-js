@@ -3,19 +3,19 @@ version: 2.0
 jobs:
   checkout_code:
     docker:
-      - image: circleci/node:8.7.0
-    working_directory: ~/docker-nodejs-starter
+      - image: circleci/node:8.9.4
+    working_directory: ~/starter-koa2-js
     steps:
       - checkout
       - save_cache:
           key: repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/docker-nodejs-starter
+            - ~/starter-koa2-js
 
   install_dependencies:
     docker:
-      - image: circleci/node:8.7.0
-    working_directory: ~/docker-nodejs-starter
+      - image: circleci/node:8.9.4
+    working_directory: ~/starter-koa2-js
     steps:
       - restore_cache:
           keys:
@@ -27,12 +27,12 @@ jobs:
       - save_cache:
           key: dependencies-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
-            - ~/docker-nodejs-starter/node_modules
+            - ~/starter-koa2-js/node_modules
 
   test:
     docker:
-      - image: circleci/node:8.7.0
-    working_directory: ~/docker-nodejs-starter
+      - image: circleci/node:8.9.4
+    working_directory: ~/starter-koa2-js
     steps:
       - restore_cache:
           keys:
@@ -47,14 +47,14 @@ jobs:
           name: Run coverage report
           command: npm run coverage
       - store_test_results:
-          path: ~/docker-nodejs-starter/coverage.lcov
+          path: ~/starter-koa2-js/coverage.lcov
       - store_artifacts:
-          path: ~/docker-nodejs-starter/coverage.lcov
+          path: ~/starter-koa2-js/coverage.lcov
 
   build:
     docker:
-      - image: circleci/node:8.7.0
-    working_directory: ~/docker-nodejs-starter
+      - image: circleci/node:8.9.4
+    working_directory: ~/starter-koa2-js
     steps:
       - restore_cache:
           keys:
@@ -68,9 +68,9 @@ jobs:
       - save_cache:
           key: assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/docker-nodejs-starter/app.tar.gz
+            - ~/starter-koa2-js/app.tar.gz
       - store_artifacts:
-          path: ~/docker-nodejs-starter/app.tar.gz
+          path: ~/starter-koa2-js/app.tar.gz
 
 workflows:
   version: 2
