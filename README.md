@@ -1,4 +1,4 @@
-# docker-nodejs-starter
+# starter(koa2)<sup>js</sup>
 
 [![Build Status][circle-image]][circle-url]
 [![Code Coverage][codecov-image]][codecov-url]
@@ -10,7 +10,7 @@ Starter kit for server-side only Node.js with Koa2 applications running on Alpin
 
 ## Overview
 Overall, this starter kit provides the standard boilerplate constructs to develop and build a Node.js applcation. It provides ES2017+ through Babel with `async/await` support for Koa2 implemenations. It has some configurable project settings with included \*rc/\*ignore files for:
-- [Babel](https://babeljs.io/) ([.babelrc](./.babelrc) for development, see build config for production code)
+- [Babel](https://babeljs.io/) ([.babelrc](./.babelrc) for import/export syntactic sugar)
 - [Git](https://git-scm.com/) ([.gitignore](./.gitignore), pretty much the standard Node.js one provided by Github)
 - [Docker](https://www.docker.com/) ([.dockerignore](./.dockerignore), pretty much the .gitignore above with a few small changes)
 
@@ -41,23 +41,22 @@ For development, it is strongly recommended to use `docker-compose` with the inc
 For production, builds are a multi-step process that is easily automated. Below is a short script to achieve this goal.
 ```
 npm run release
-docker build -t aeilers/docker-nodejs .
+docker build -t fnalabs/docker-nodejs .
 ```
 
-## Guarantees
-[There are none](./LICENSE).
+[LICENSE](./LICENSE)
 
-[circle-image]: https://img.shields.io/circleci/project/github/aeilers/docker-nodejs-starter.svg
-[circle-url]: https://circleci.com/gh/aeilers/docker-nodejs-starter
+[circle-image]: https://img.shields.io/circleci/project/github/fnalabs/starter-koa2-js.svg
+[circle-url]: https://circleci.com/gh/fnalabs/starter-koa2-js
 
-[codecov-image]: https://img.shields.io/codecov/c/github/aeilers/docker-nodejs-starter.svg
-[codecov-url]: https://codecov.io/gh/aeilers/docker-nodejs-starter
+[codecov-image]: https://img.shields.io/codecov/c/github/fnalabs/starter-koa2-js.svg
+[codecov-url]: https://codecov.io/gh/fnalabs/starter-koa2-js
 
-[depstat-image]: https://img.shields.io/david/aeilers/docker-nodejs-starter.svg
-[depstat-url]: https://david-dm.org/aeilers/docker-nodejs-starter
+[depstat-image]: https://img.shields.io/david/fnalabs/starter-koa2-js.svg
+[depstat-url]: https://david-dm.org/fnalabs/starter-koa2-js
 
-[devdepstat-image]: https://img.shields.io/david/dev/aeilers/docker-nodejs-starter.svg
-[devdepstat-url]: https://david-dm.org/aeilers/docker-nodejs-starter?type=dev
+[devdepstat-image]: https://img.shields.io/david/dev/fnalabs/starter-koa2-js.svg
+[devdepstat-url]: https://david-dm.org/fnalabs/starter-koa2-js?type=dev
 
 [style-image]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
 [style-url]: https://standardjs.com

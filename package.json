@@ -1,6 +1,6 @@
 {
-  "name": "docker-nodejs-starter",
-  "version": "1.0.0",
+  "name": "starter-koa2-js",
+  "version": "0.0.0",
   "description": "Starter kit for server-side Node.js w/ Koa2 implementations in Docker",
   "main": "./bin/start",
   "scripts": {
@@ -15,19 +15,19 @@
     "start:dev": "NODE_ENV=development npm run build && node ./bin/start",
     "pretest": "del coverage coverage.lcov .nyc_output",
     "test": "standard",
-    "posttest": "NODE_ENV=test nyc --reporter=html --reporter=text mocha tst --recursive --exit",
+    "posttest": "NODE_ENV=test nyc --reporter=html --reporter=text mocha --recursive --exit 'tst/**/*.spec.js'",
     "version": "npm run release && git add --all",
     "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aeilers/docker-nodejs-starter.git"
+    "url": "git+https://github.com/fnalabs/starter-koa2-js.git"
   },
   "bugs": {
-    "url": "https://github.com/aeilers/docker-nodejs-starter/issues"
+    "url": "https://github.com/fnalabs/starter-koa2-js/issues"
   },
-  "homepage": "https://github.com/aeilers/docker-nodejs-starter#readme",
-  "author": "Adam Eilers <adam.eilers@gmail.com>",
+  "homepage": "https://github.com/fnalabs/starter-koa2-js#readme",
+  "author": "Adam Eilers",
   "license": "MIT",
   "engines": {
     "node": ">=8",
@@ -35,32 +35,32 @@
   },
   "dependencies": {
     "kcors": "~2.2.0",
-    "koa": "~2.3.0",
+    "koa": "~2.4.1",
     "koa-bodyparser": "~4.2.0",
-    "koa-helmet": "~3.2.0",
+    "koa-helmet": "~3.3.0",
     "koa-logger": "~3.1.0",
-    "koa-router": "~7.2.1"
+    "koa-router": "~7.3.0"
   },
   "devDependencies": {
     "archiver": "~2.1.0",
     "babel-cli": "~6.26.0",
     "babel-core": "~6.26.0",
-    "babel-eslint": "~8.0.1",
+    "babel-eslint": "~8.1.2",
     "babel-plugin-add-module-exports": "~0.2.1",
     "babel-plugin-istanbul": "~4.1.5",
     "babel-plugin-transform-es2015-modules-commonjs": "~6.26.0",
     "babel-register": "~6.26.0",
     "chai": "~4.1.2",
     "chai-as-promised": "~7.1.1",
-    "codecov": "~2.3.1",
+    "codecov": "~3.0.0",
     "del-cli": "~1.1.0",
     "dirty-chai": "~2.0.1",
-    "mocha": "~4.0.1",
+    "mocha": "~4.1.0",
     "node-mocks-http": "~1.6.6",
-    "nodemon": "~1.12.1",
-    "nyc": "~11.2.1",
+    "nodemon": "~1.14.7",
+    "nyc": "~11.4.1",
     "proxyquire": "~1.8.0",
-    "sinon": "~4.0.0",
+    "sinon": "~4.1.3",
     "standard": "~10.0.3",
     "supertest": "~3.0.0"
   },

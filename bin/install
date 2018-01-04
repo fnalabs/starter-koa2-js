@@ -1,57 +1,72 @@
 #!/usr/bin/env bash
 
 ###
-# environment install script for Alpine Linux on Docker
+# utility functions
 ###
-runInstall () {
-    local DIVIDER="===================="
-    local TEMPLATE="\n\n${DIVIDER}${DIVIDER}${DIVIDER}\n%s\n\n\n"
-
-    ###
-    # NOTE: setup script dependencies
-    ###
-    printf "${TEMPLATE}" "Installing supporting scripts"
-    setupScripts
-    baseInstall
-
-    ###
-    # NOTE: setup project
-    ###
-    projectInstall
-
-    ###
-    # NOTE: add additional file/folder removal here for all images
-    ###
-    clearApkCache
-
-    # set permissions for node user group
-    chgrp -R node .
-    chmod -R g+w .
+clearApkCache () {
+  rm -rf \
+    /tmp/* \
+    /var/cache/apk/*
 }
 
-setupScripts () {
-    apk add \
-        ca-certificates \
-        dumb-init \
-        openssl
-    update-ca-certificates
+printLine () {
+  local DIVIDER="===================="
+  local TEMPLATE="\n\n${DIVIDER}${DIVIDER}${DIVIDER}\n%s\n\n\n"
 
-    mkdir -p /opt/scripts
-    wget -O- https://github.com/aeilers/docker-script-lib/archive/master.tar.gz | tar xzf - -C /opt/scripts
-    cp -r /opt/scripts/docker-script-lib-master/* /opt/scripts/
-    rm -r /opt/scripts/docker-script-lib-master/
+  printf "${TEMPLATE}" "${1}"
+}
 
-    find /opt/scripts/ -mindepth 1 -maxdepth 1 -type d \
-        -not -name base \
-        -not -name nodejs \
-        -not -name "." \
-        -exec rm -rf {} \;
+###
+# base environment install script for Alpine Linux on Docker
+###
+baseInstall () {
+  ###
+  # NOTE: packages for env improvements are a personal preference here...
+  #   - bash-completion coreutils grep tree
+  ###
+  printLine "Installing environment dependencies"
+  apk add \
+    coreutils \
+    dumb-init \
+    grep \
+    tree
+}
 
-    chmod +x /opt/scripts/base/*
-    ln -s /opt/scripts/base/* /usr/local/bin/
+###
+# project install script for project dependencies
+#   - this can and should be run as needed in dev environment to update project dependencies
+#       - example: re-running "npm install" to update versions
+###
+projectInstall () {
+  if [[ "${NODE_ENV}" == "production" ]]; then
+    printLine "Installing (Production) Node.js Dependencies"
+    npm install --quiet --no-optional --production
+  else
 
-    chmod +x /opt/scripts/nodejs/*
-    ln -s /opt/scripts/nodejs/* /usr/local/bin/
+    if [[ -f ./package.json ]]; then
+      printLine "Installing (All) Node.js Dependencies"
+      npm install --quiet --no-optional
+    fi
+
+  fi
+
+  printLine "Clearing Node and NPM cache"
+  rm -rf \
+    ${HOME_DIR}/.npm \
+    ${HOME_DIR}/.node-gyp
+}
+
+###
+# install script for Alpine Linux on Docker
+###
+runInstall () {
+  baseInstall
+  projectInstall
+  clearApkCache
+
+  # set permissions for node user group
+  chgrp -R node .
+  chmod -R g+w .
 }
 
 runInstall
