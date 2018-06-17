@@ -22,7 +22,7 @@ describe('router', () => {
     Router = proxyquire('../src/router', {
       'koa-router': class RouterClass {
         get () { return getSpy() }
-            }
+      }
     })
   }
 
