@@ -17,7 +17,7 @@ Overall, this starter kit provides the standard boilerplate constructs to develo
 I have added support for badges. Currently, this project is integrated with [CircleCI](https://circleci.com/) and [Codecov](https://codecov.io/) to provide build and coverage badges respectively. I have also configured this project to track `dependencies` and `devDependencies` with [David-dm](https://david-dm.org/). All are free for open source projects and should be used to provide quick references to the projects status as well as a way to automatically test pull requests.
 
 ## NPM
-Also, it provides an extensible build process integrated with npm scripts. The following is a breakdown of npm scripts provided and how to use them:
+The project provides an extensible build process integrated with npm scripts. The following is a breakdown of npm scripts provided and how to use them:
 - `npm run build` - to build production output.
 - `npm run coverage` - to report test coverage to Codecov.
 - `npm run dev` - to run two nodemon processes automatically based on watched files, one to rebuild application code and the other to run tests

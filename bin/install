@@ -38,19 +38,13 @@ baseInstall () {
 #       - example: re-running "npm install" to update versions
 ###
 projectInstall () {
-  npm install -g npm
-
-  if [[ "${NODE_ENV}" == "production" ]]; then
+  if [[ "${NODE_ENV}" == "development" ]]; then
+    printLine "Installing (All) Node.js Dependencies"
+    npm install --quiet --no-optional
+  else
     printLine "Installing (Production) Node.js Dependencies"
     npm install --quiet --no-optional --production
     npm prune --production
-  else
-
-    if [[ -f ./package.json ]]; then
-      printLine "Installing (All) Node.js Dependencies"
-      npm install --quiet --no-optional
-    fi
-
   fi
 
   printLine "Clearing Node and NPM cache"
