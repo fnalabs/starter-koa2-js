@@ -8,7 +8,7 @@ export default class AppRouter extends Router {
   }
 
   async getWorld (ctx) {
-    let query = ctx.query
+    const query = ctx.query
 
     if (query.error) throw new Error('test error')
 
