@@ -1,26 +1,44 @@
-# start with Alpine Linux Base image
-# NOTE: change 'ARG IMG_VER="..."' statement to preferred Node.js image
-ARG IMG_VER="10.15.3-alpine"
-FROM node:${IMG_VER}
-LABEL maintainer="Adam Eilers"
+# start with Alpine Linux Node image for development
+FROM node:10.16.3-alpine as development
 
-# NOTE: if user created, change APP_PATH to user's workspace
 ARG APP_PATH="/opt/app"
-ARG APP_SOURCE="app.tar.gz"
-ARG NODE_ENV
-ARG PORT
+ARG NODE_ENV="development"
+ARG PORT="3000"
 
 # set environment variables
-ENV NODE_ENV="${NODE_ENV:-production}" \
-    PORT="${PORT:-3000}"
+ENV NODE_ENV="${NODE_ENV}" \
+    PORT="${PORT}"
 
 # Project code
-# NOTE: APP_SOURCE can use build process compressed output for smaller production builds
-ADD ${APP_SOURCE} ${APP_PATH}
+COPY . ${APP_PATH}
 
 # change to workspace and run project install script
 WORKDIR ${APP_PATH}
-RUN apk add --update --no-cache bash-completion && bash ./bin/install
+RUN apk add --update --no-cache bash-completion && \
+    bash ./bin/install && \
+    npm run release
+
+# expose standard Node.js port of 3000
+EXPOSE ${PORT}
+
+# use Alpine Linux Node image for production
+FROM node:10.16.3-alpine as production
+
+ARG APP_PATH="/opt/app"
+ARG NODE_ENV="production"
+ARG PORT="3000"
+
+# set environment variables
+ENV NODE_ENV="${NODE_ENV}" \
+    PORT="${PORT}"
+
+# Project code
+COPY --from=development ${APP_PATH}/app.tar.gz ${APP_PATH}
+
+# change to workspace and run project install script
+WORKDIR ${APP_PATH}
+RUN apk add --update --no-cache bash-completion && \
+    bash ./bin/install
 
 # expose standard Node.js port of 3000
 EXPOSE ${PORT}

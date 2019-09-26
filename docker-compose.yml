@@ -3,14 +3,15 @@ services:
   app:
     build:
       context: .
-      args:
-        APP_SOURCE: "."
-        NODE_ENV: "development"
+      target: development
 
     # NOTE: use 'image' for development
-    image: app
+    image: app:development
 
     # NOTE: add 'command' for development
+    entrypoint:
+      - dumb-init
+      - --
     command: npm run dev
 
     # NOTE: add environment file for development
