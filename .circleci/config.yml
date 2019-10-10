@@ -63,14 +63,8 @@ jobs:
           keys:
             - dependencies-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
-          name: Build and compress code
-          command: npm run build && node ./bin/compress
-      - save_cache:
-          key: assets-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/starter-koa2-js/app.tar.gz
-      - store_artifacts:
-          path: ~/starter-koa2-js/app.tar.gz
+          name: Build code
+          command: npm run build
 
 workflows:
   version: 2

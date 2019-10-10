@@ -10,7 +10,7 @@ ENV NODE_ENV="${NODE_ENV}" \
     PORT="${PORT}"
 
 # Project code
-COPY . ${APP_PATH}
+COPY . ${APP_PATH}/
 
 # change to workspace and run project install script
 WORKDIR ${APP_PATH}
@@ -33,7 +33,10 @@ ENV NODE_ENV="${NODE_ENV}" \
     PORT="${PORT}"
 
 # Project code
-COPY --from=development ${APP_PATH}/app.tar.gz ${APP_PATH}
+COPY --from=development ${APP_PATH}/bin ${APP_PATH}/bin/
+COPY --from=development ${APP_PATH}/dist ${APP_PATH}/dist/
+COPY --from=development ${APP_PATH}/package.json ${APP_PATH}/
+COPY --from=development ${APP_PATH}/package-lock.json ${APP_PATH}/
 
 # change to workspace and run project install script
 WORKDIR ${APP_PATH}
