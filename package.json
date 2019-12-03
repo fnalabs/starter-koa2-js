@@ -31,7 +31,7 @@
   "author": "Adam Eilers",
   "license": "MIT",
   "engines": {
-    "node": ">=10",
+    "node": ">=12",
     "npm": ">=6"
   },
   "dependencies": {
