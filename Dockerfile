@@ -1,5 +1,5 @@
 # start with Alpine Linux Node image for development
-FROM node:10.16.3-alpine as development
+FROM node:12.13.1-alpine as development
 
 ARG APP_PATH="/opt/app"
 ARG NODE_ENV="development"
@@ -22,7 +22,7 @@ RUN apk add --update --no-cache bash-completion && \
 EXPOSE ${PORT}
 
 # use Alpine Linux Node image for production
-FROM node:10.16.3-alpine as production
+FROM node:12.13.1-alpine as production
 
 ARG APP_PATH="/opt/app"
 ARG NODE_ENV="production"
@@ -33,10 +33,9 @@ ENV NODE_ENV="${NODE_ENV}" \
     PORT="${PORT}"
 
 # Project code
-COPY --from=development ${APP_PATH}/bin ${APP_PATH}/bin/
 COPY --from=development ${APP_PATH}/dist ${APP_PATH}/dist/
-COPY --from=development ${APP_PATH}/package.json ${APP_PATH}/
-COPY --from=development ${APP_PATH}/package-lock.json ${APP_PATH}/
+COPY bin ${APP_PATH}/bin/
+COPY package.json package-lock.json LICENSE ${APP_PATH}/
 
 # change to workspace and run project install script
 WORKDIR ${APP_PATH}
