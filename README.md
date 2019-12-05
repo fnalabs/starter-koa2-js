@@ -1,6 +1,5 @@
 # starter(koa2)<sup>js</sup>
 
-[![Build Status][circle-image]][circle-url]
 [![Code Coverage][codecov-image]][codecov-url]
 [![Dependency Status][depstat-image]][depstat-url]
 [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
@@ -45,9 +44,6 @@ docker build -t fnalabs/docker-nodejs .
 ```
 
 [LICENSE](./LICENSE)
-
-[circle-image]: https://img.shields.io/circleci/project/github/fnalabs/starter-koa2-js.svg
-[circle-url]: https://circleci.com/gh/fnalabs/starter-koa2-js
 
 [codecov-image]: https://img.shields.io/codecov/c/github/fnalabs/starter-koa2-js.svg
 [codecov-url]: https://codecov.io/gh/fnalabs/starter-koa2-js
