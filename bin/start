@@ -1,8 +1,8 @@
 #! /usr/bin/env node
-const CONFIG = require('../conf')
+const { PORT } = require('../dist/config')
 
 const app = require('../dist')
 
-app.listen(CONFIG.PORT)
+app.listen(PORT)
 
-console.info('app running on port', CONFIG.PORT)
+console.info('app running on port', PORT)
