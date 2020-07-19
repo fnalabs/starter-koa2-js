@@ -1,6 +1,6 @@
 import Router from 'koa-router'
 
-export default class AppRouter extends Router {
+export default class HelloRouter extends Router {
   constructor () {
     super()
 
@@ -8,10 +8,6 @@ export default class AppRouter extends Router {
   }
 
   async getWorld (ctx) {
-    const query = ctx.query
-
-    if (query.error) throw new Error('test error')
-
     ctx.status = 200
     ctx.body = 'Hello World'
   }
