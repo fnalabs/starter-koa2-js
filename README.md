@@ -9,7 +9,7 @@ Starter kit for server-side only Node.js with Koa2 applications running on Alpin
 
 ## Overview
 Overall, this starter kit provides the standard boilerplate constructs to develop and build a Node.js applcation. It provides ES2017+ through Babel with `async/await` support for Koa2 implemenations. It has some configurable project settings with included \*rc/\*ignore files for:
-- [Babel](https://babeljs.io/) ([.babelrc](./.babelrc) for import/export syntactic sugar)
+- [Babel](https://babeljs.io/) ([.babelrc](./.babel.config.json) for the latest JS features)
 - [Git](https://git-scm.com/) ([.gitignore](./.gitignore), pretty much the standard Node.js one provided by Github)
 - [Docker](https://www.docker.com/) ([.dockerignore](./.dockerignore), pretty much the .gitignore above with a few small changes)
 
