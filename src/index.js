@@ -1,16 +1,15 @@
 // imports
 import Koa from 'koa'
-import Router from 'koa-router'
 
 import bodyparser from 'koa-bodyparser'
 import cors from 'kcors'
 import helmet from 'koa-helmet'
 import logger from 'koa-logger'
 
-import AppRouter from './router'
+import { HealthRouter, HelloRouter } from './routers'
 
-const appRouter = new AppRouter()
-const healthRouter = new Router().get('/health', ctx => { ctx.status = 200 })
+const healthRouter = new HealthRouter()
+const helloRouter = new HelloRouter()
 const app = new Koa()
 
 // bootstrap app
@@ -27,14 +26,16 @@ app
   .use(healthRouter.allowedMethods())
 
   // main router
-  .use(appRouter.routes())
-  .use(appRouter.allowedMethods())
+  .use(helloRouter.routes())
+  .use(helloRouter.allowedMethods())
 
   // handle error response for all other requests
   .use(async ctx => { ctx.status = 404 })
 
+/*
   // log any errors that occurred
   // NOTE: errors need to be integrated with log stream
   .on('error', err => { console.log(err) })
+*/
 
 export default app

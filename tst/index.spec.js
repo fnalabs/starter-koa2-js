@@ -5,6 +5,10 @@ import request from 'supertest'
 describe('app', () => {
   let app
 
+  after(() => {
+    app = null
+  })
+
   before(() => {
     // NOTE: forcing use of proxyquire to shim app dependencies if applicable
     app = proxyquire('../src/', {}).listen()
@@ -23,20 +27,10 @@ describe('app', () => {
         .expect(200, 'Hello World', done)
     })
 
-    it('should respond with 500 if an unhandled error is thrown', (done) => {
-      request(app)
-        .get('/hello-world?error=true')
-        .expect(500, done)
-    })
-
     it('should respond with 404 from unspecified routes', (done) => {
       request(app)
         .get('/unspecified')
         .expect(404, 'Not Found', done)
     })
-  })
-
-  after(() => {
-    app = null
   })
 })

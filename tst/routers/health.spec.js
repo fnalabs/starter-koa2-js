@@ -8,18 +8,17 @@ import sinon from 'sinon'
 chai.use(chaiAsPromised)
 chai.use(dirtyChai)
 
-describe('router', () => {
+describe('HealthRouter', () => {
   let Router, router, context, getSpy
 
-  function init (error = false) {
+  function init () {
     context = {
       body: '',
-      query: { error },
       status: 200
     }
 
     getSpy = sinon.spy()
-    Router = proxyquire('../src/router', {
+    Router = proxyquire('../../src/routers/health', {
       'koa-router': class RouterClass {
         get () { return getSpy() }
       }
@@ -27,6 +26,10 @@ describe('router', () => {
   }
 
   describe('#constructor', () => {
+    after(() => {
+      router = null
+    })
+
     before(() => {
       init()
       router = new Router()
@@ -35,38 +38,28 @@ describe('router', () => {
     it('should create the Router object', () => {
       expect(router).to.exist()
 
-      expect(router.getWorld).to.be.a('function')
+      expect(router.getHealth).to.be.a('function')
       expect(getSpy.calledOnce).to.be.true()
-    })
-
-    after(() => {
-      router = null
     })
   })
 
-  describe('#getWorld', () => {
-    const errorStates = [false, true]
+  describe('#getHealth', () => {
+    after(() => {
+      context = null
+      router = null
+    })
 
-    beforeEach(() => {
-      init(errorStates.shift())
+    before(() => {
+      init()
       router = new Router()
     })
 
     it('should handle normal get requests', async () => {
-      await router.getWorld(context)
+      await router.getHealth(context)
 
       expect(context.body).to.be.a('string')
-      expect(context.body).to.equal('Hello World')
+      expect(context.body).to.equal('OK')
       expect(context.status).to.equal(200)
-    })
-
-    it('should expect a thrown error', async () => {
-      await expect(router.getWorld(context)).to.eventually.be.rejectedWith(Error)
-    })
-
-    afterEach(() => {
-      context = null
-      router = null
     })
   })
 })

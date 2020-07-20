@@ -1,8 +1,17 @@
 #! /usr/bin/env node
-const { PORT } = require('../dist/config')
+const fs = require('fs')
+const { createSecureServer } = require('http2')
+
+const { PORT, SSL_CERT_PATH, SSL_KEY_PATH } = require('../dist/config')
 
 const app = require('../dist')
 
-app.listen(PORT)
+const options = {
+  allowHTTP1: true,
+  cert: fs.readFileSync(SSL_CERT_PATH),
+  key: fs.readFileSync(SSL_KEY_PATH)
+}
 
-console.info('app running on port', PORT)
+createSecureServer(options, app.callback()).listen(PORT, () => {
+  console.info('app running on port', PORT)
+})
