@@ -18,8 +18,11 @@ app
   .use(bodyparser())
   .use(cors())
   .use(helmet())
-  .use(helmet.noCache())
   .use(helmet.referrerPolicy())
+  .use(async (ctx, next) => {
+    ctx.set('Cache-Control', 'no-cache')
+    await next()
+  })
 
   // healthcheck router
   .use(healthRouter.routes())
