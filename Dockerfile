@@ -1,5 +1,5 @@
 # start with Alpine Linux Node image for development
-FROM node:12.19.0-alpine as development
+FROM node:14.15.0-alpine as development
 
 ARG APP_PATH="/opt/app"
 ARG NODE_ENV="development"
@@ -22,7 +22,7 @@ RUN apk add --update --no-cache bash-completion && \
 EXPOSE ${PORT}
 
 # use Alpine Linux Node image for production
-FROM node:12.19.0-alpine as production
+FROM node:14.15.0-alpine as production
 
 ARG APP_PATH="/opt/app"
 ARG NODE_ENV="production"
