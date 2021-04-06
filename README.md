@@ -1,8 +1,6 @@
 # starter(koa2)<sup>js</sup>
 
 [![Code Coverage][codecov-image]][codecov-url]
-[![Dependency Status][depstat-image]][depstat-url]
-[![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 [![JavaScript Style Guide][style-image]][style-url]
 
 Starter kit for server-side only Node.js with Koa2 applications running on Alpine Linux.
@@ -54,12 +52,6 @@ docker build -t fnalabs/docker-nodejs .
 
 [codecov-image]: https://img.shields.io/codecov/c/github/fnalabs/starter-koa2-js.svg
 [codecov-url]: https://codecov.io/gh/fnalabs/starter-koa2-js
-
-[depstat-image]: https://img.shields.io/david/fnalabs/starter-koa2-js.svg
-[depstat-url]: https://david-dm.org/fnalabs/starter-koa2-js
-
-[devdepstat-image]: https://img.shields.io/david/dev/fnalabs/starter-koa2-js.svg
-[devdepstat-url]: https://david-dm.org/fnalabs/starter-koa2-js?type=dev
 
 [style-image]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
 [style-url]: https://standardjs.com
